@@ -1,0 +1,89 @@
+body, .div {
+	margin:0;
+	padding:0;
+}
+.ui-tabs-anchor{
+	font-size:10pt;
+}
+#nav-table {
+	width:100%
+}
+#nav-header td {
+	text-align:center;
+	font-weight:bold;
+}
+#nav-hier {
+	text-align:center;
+}
+#nav-hier input {
+	font-weight:bold;
+	background:transparent;
+	border:none;
+}
+#nav-hier input:hover {
+	background:#DDD;
+	cursor:pointer;
+}
+#nav-table select {
+	width:100%;
+}
+#nav-table option {
+	font-size:10pt;
+	height:20px;
+	font-family:Arial
+}
+#nav-title {
+	width:100%;
+}
+#nav-sub select {
+	width:80%;
+}
+#nav-sub option {
+	font-family:Arial;
+	font-size:10pt;
+	height:22px;
+}
+#parent{
+	position:absolute;
+	height:100%;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+#div1{
+	position:relative;
+	float:left;
+	height:100%;
+	width:300px;
+	background-color:#EEE;
+}
+#div2{
+	position:relative;
+	float:left;
+	height:100%;
+	width:100%;
+	background-color:#FFF;
+}
+
+#content{
+	position:absolute;
+	height:100%;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+
+#diva{
+	position:relative;
+	height:80%;
+	width:100%;
+	background-color:#FFF;
+	overflow:scroll;
+}
+#divb{
+	position:relative;
+	float:left;
+	height:20%;
+	width:100%;
+	background-color:#EEE;
+}

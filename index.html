@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" manifest="dpr.appcache">
+
+<head>
+	<title>Digital Pali Reader</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.28" />
+	<link rel="stylesheet" href="jqueryui/jquery-ui.min.css">
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="styles.css">
+ 	<script src="jqueryui/external/jquery/jquery.js"></script>
+	<script src="jqueryui/jquery-ui.min.js"></script>
+ 	<script src="content/js/navigation_common.js"></script>
+ 	<script src="content/js/prefload.js"></script>
+ 	<script src="content/js/translit.js"></script>
+ 	<script src="content/js/xml_load.js"></script>
+ 	<script src="content/js/navigation.js"></script>
+ 	<script src="content/js/relmul.js"></script>
+ 	<script src="content/js/relatt.js"></script>
+ 	<script src="content/js/reltik.js"></script>
+ 	<script src="content/js/dppn.js"></script>
+ 	<script src="content/js/translations.js"></script>
+ 	<script src="content/js/format.js"></script>
+ 	<script src="content/js/xml.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/chrome.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/convert.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/sortaz.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/move.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/dict_xml.js"></script>
+
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/analysis_declension.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/analysis_arrays.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/analysis_function.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/analysis_output.js"></script>
+
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/inflect.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/grammar.js"></script>
+
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/listsm.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/listam.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/ped.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/dppn.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/nameno.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/english.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/irreg.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/attlist.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/tiklist.js"></script>
+	<script language="JavaScript1.3" type="text/javascript" src="content/js/titles.js"></script>
+	
+ 	<script src="content/js/sidebar.js"></script>
+	<script>
+		/*
+		$(window).resize(function(){
+			$('#div2').width($("#parent").width()-$("#div1").width()-5); 
+			$('#div1').height($("#parent").height()); 
+		});
+		$(window).resize(function(){
+			$('#divb').height($("#content").height()-$("#diva").height()-5); 
+			$('#diva').width($("#content").width()-5); 
+		});
+		*/
+		$( function() {
+
+			/*
+
+			$( "#tabs" ).tabs();
+			$('#div2').width($("#parent").width()-$("#div1").width()-5); 
+			$("#div1").resizable();
+			$('#div1').resize(function(){
+			   $('#div2').width($("#parent").width()-$("#div1").width()-5); 
+			});
+
+			$('#divb').height($("#content").height()-$("#diva").height()-1); 
+			$('#diva').width($("#content").width()-5); 
+			$("#diva").resizable();
+			$('#diva').resize(function(){
+				$('#divb').height($("#content").height()-$("#diva").height()-5); 
+			});
+
+			*/
+
+			var navset = $("#nav-set");
+			for(var i in G_nikFullNames){
+				navset.append($("<option />").val(i).text(G_nikFullNames[i]));
+			}
+			navset.val('d');
+			sidebarJS.setBookList('d');
+			sidebarJS.changeSet();
+			navset.change(function() {
+				sidebarJS.changeSet();
+			});
+			$("#nav-book").change(function() {
+				sidebarJS.updateSubnav(0);
+			});
+		} );
+		
+		
+		// dummy functions
+		function addJS(){}
+	</script>
+</head>
+
+<body>
+	<div id="parent">
+		<div id="div1">
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Navigation</a></li>
+					<li><a href="#tabs-2">Search</a></li>
+					<li><a href="#tabs-3">Tools</a></li>
+				</ul>
+				<div id="tabs-1">
+					<table id="nav-table">
+						<tr id="nav-header">
+							<td>Set</td>
+							<td>Book</td>
+						</tr>
+						<tr>
+							<td>
+								<select id="nav-set" size="10">
+								</select>
+							</td>
+							<td align="center">
+								<select id="nav-book" size="10">
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td id="nav-hier" colspan="2"><input type="button" value="M" id="hier-m" /> | <input type="button" value="A" id="hier-a" /> | <input type="button" value="T" id="hier-t" /></td>
+						</tr>
+					</table>
+					<hr/>
+					<div id="quicklink">
+						Quick Link <input id="quicklink-text" size="4"> <input type="button" value="&rArr;">
+					</div>
+					<hr/>
+					<div id="nav-sub">
+						<input id="nav-title" type="button"/>
+						<div class="subnav-cont">
+							<select id="nav-meta"></select>&nbsp;<input id="nav-meta-button" type="button" value="&rArr;"/>
+						</div>
+						<div class="subnav-cont">
+							<select id="nav-volume"></select>&nbsp;<input id="nav-volume-button" type="button" value="&rArr;"/>
+						</div>
+						<div class="subnav-cont">
+							<select id="nav-vagga"></select>&nbsp;<input id="nav-vagga-button" type="button" value="&rArr;"/>
+						</div>
+						<div class="subnav-cont">
+							<select id="nav-sutta"></select>&nbsp;<input id="nav-sutta-button" type="button" value="&rArr;"/>
+						</div>
+						<div class="subnav-cont">
+							<select id="nav-section"></select>&nbsp;<input id="nav-section-button" type="button" value="&rArr;"/>
+						</div>
+					</div>
+					<hr/>
+				</div>
+				<div id="tabs-2">
+					<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+				</div>
+				<div id="tabs-3">
+					<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+					<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+				</div>
+			</div>
+		</div> 
+		<div id="div2">
+			<div id="content">
+				<div id="matrelc"></div>
+				<div id="diva" onmouseover="document.body.style.cursor='auto'">
+					<div id="maf">
+						<div align="left" id="mafa" class="paperback"></div>
+						<div align="justify" id="mafb" class="paperback">
+							<div id="mafbc">
+								<div align="center"><br><br><br><br><br><h1>loading...</h1></div>
+								<div id="mafe" align=center>
+								</div>
+								<div id="mafd" align=center>
+								</div>
+								<div id="mafdebug"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="divb" onmouseover="document.body.style.cursor='auto'">
+					<div id="anf" align="right" class="chromeback">
+						<div id="brtop"></div>
+						<div id="brmid"></div>
+						<div id="brbot"></div>
+						<div id="anft">
+							<div align="center" id="anfa"></div>
+							<div align="center" id="anfb"><table cellspacing="0" cellpadding="0" width=100%><tr><td align="left" valign="top" id="anfleft"></td><td valign=top align=center id="anfcenter"></td><td valign=top align=right id="anfright"></td></tr></table></div>
+							<div style="position:relative">
+								<div id="anfs"></div>
+								<div id="anfsd"></div>
+							</div>
+						</div>
+					</div>
+					<div id="bottom">
+						<div id="difout" class="difout">
+							<div id="cdif" class="cdif">
+								<div id="dif" class="dif paperback">
+									<div id="difb" class="difb">
+									</div>
+								</div>
+							</div>
+							<div id="difhist" class="hoverShow"></div>
+						</div>
+					</div>
+					<div id="alertc"><span id="alert"></span></div>
+				</div>
+				<div id="tbContainer" style="display:none" class="chromeback" onmouseover="$('#tbContainer2').show(); $('#tbOpener').hide();" onmouseout="$('#tbContainer2').hide();$('#tbOpener').show();"></div>
+
+				<div id="alertc"><span id="alert"></span></div>
+			</div>
+		</div> 
+	</div>
+</body>
+</html>
