@@ -244,9 +244,7 @@ left:20px;
 
 
 #content {
-position:absolute;
-width:100%;
-height:100%;
+
 }
 
 #cpopen {
@@ -467,48 +465,26 @@ overflow:auto;
 padding-top:10px; 
 }
 #right {  
-position:absolute;
-bottom:0px;
-top:0px;
-right:0px;
-left:0px;
+
 }
 
 #maf {
-position:absolute; 
-right:0px;
-left:0px;
-top:0px;
-bottom:0px;
-overflow:auto;
+
 }
 #maft {
-position:absolute;
-margin-left:auto; 
-margin-right: auto;
-left:0px;
-bottom:0px;
+
 }
 #maftopen {
-display:none;
-position:absolute;
-left:0px;
-bottom:0px;
+
 }
 #mafa {
-position:absolute;
-left:-1px;
-bottom:0px;
-width:100%;
+
 }
 #mafb {
-	position:relative;
-	min-height:100%;
+
 }
 #mafc {
-	position:absolute;
-	top:0px;
-	left:0px;
+
 }
 #mafbc {
 	padding:0 20px;
@@ -579,11 +555,7 @@ z-index:3;
 }
 
 #bottom {  
-	position:absolute;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
+
 overflow:auto;
 }
 #dictc {
@@ -598,20 +570,13 @@ overflow:auto;
 	overflow:auto;
 }
 #difout {
-	position:absolute;
-	height:100%; 
-	width:100%; 
+
 }
 #cdif {
-position:relative;
-height:100%;
-width:100%;
+
 }
 #dif {
-position:absolute;
-left:0px;
-right:0px;
-top:0px;
+
 padding:0 20px;
  
 }
@@ -633,30 +598,15 @@ top:4px
 }
 
 #left {  
-position:absolute; 
-top:0; 
-left:0; 
-right:0; 
-height:100%;
-z-index:2;
+
 }
 
 #brleft {
-border-right: grey 1px solid;
-position:absolute;
-right:0px;
-top:0;
-width:100%;
-height:100%;
+
 background-color:#d9d4cc;
 }
 #cleft {  
-position:absolute;
-margin-right:4px; 
-height:100%;
-width:100%;
-overflow:auto;
-text-align:center;
+
 }
 
 #tleft {  
@@ -686,9 +636,7 @@ font-size:14px;
 }
 
 #difhist {
-	position:absolute;
-	top:0;
-	right:16px;
+
 }
 
 .butc {
