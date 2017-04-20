@@ -3,8 +3,16 @@ body {
 	padding:0;
 	overflow:hidden;
 }
+#nav-rel-div {
+	width:100%;
+	position:relative;
+}
+
+.clear {
+	clear: both;
+}
+
 #nav-hier-div {
-	display:none;
 }
 
 #nav-hier {
@@ -38,11 +46,14 @@ body {
 }
 
 #div1 {
-	width:100%;
-	
+	position:absolute;
+	top:0;
+	left:0px;
+	right:0px;
 }
 #div2 {
 	width:100%;
+	margin-top:40px;
 }
 
 #divb {
@@ -60,7 +71,7 @@ body {
 #close-bottom, #open-bottom{
 	background:#EEE;
 	cursor:pointer;
-	height:20px;
+	height:28px;
 	text-align:center;
 	border-bottom:1px solid black;
 }
@@ -72,12 +83,55 @@ body {
 	border-bottom:1px solid black;
 	border-top:1px solid black;
 }
-
+#prefs-button {
+	position:absolute;
+	top:28px;
+	right:0px;
+	width:28px;
+	height:24px;
+	background:#EEE;
+	border-bottom-left-radius:5px;
+	border-left:1px solid black;
+	border-bottom:1px solid black;
+	text-align:center;
+	font-weight:bold;
+	cursor:pointer;
+	z-index:1000;
+}
+#pref-box {
+	display:none;
+	background:#F0F0F0;
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;	
+	z-index:999;
+	border-bottom:1px solid black;
+}
 #bottom {  
 	position:relative;
 	height:300px;
 	overflow:auto;
 }
+#bottom-content {
+	position:relative;
+}
+
+#anf {
+	position:relative;
+	width:100%;
+	height:auto;
+	z-index:3;
+}
+
+#anfright {
+	width:70%;
+	max-width:70%;
+	padding-right:20px;
+	
+}
+
 #dictc {
 	position:relative;
 	height:100%; 
@@ -102,7 +156,7 @@ padding:0 20px;
 }
 
 
-#div1 > div {
+#nav-rel-div > div {
 	float:left;
 }
 

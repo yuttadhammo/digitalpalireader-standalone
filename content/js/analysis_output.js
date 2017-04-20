@@ -175,6 +175,12 @@ function outputDef(which,first,frombox)
 		//if(moveat == 2) { moveFrame(1); }
 	}
 	else clearDivs('dif');
+	
+	$('#pref-box').hide();
+
+	if(!$('#bottom').is(':visible')) {
+		$( "#open-bottom" ).click();
+	}
 }
 
 var G_thisConcise = [];

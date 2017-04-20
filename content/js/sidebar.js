@@ -1,4 +1,4 @@
-var sidebarJS = {
+var chromeJS = {
 	changeSet() {
 		var nik = $('#nav-set').val();
 		if (G_hier == 't' && (nik == 'k' || nik == 'x' || nik == 'g' || nik == 'b')) { 
@@ -44,7 +44,9 @@ var sidebarJS = {
 	},
 
 	updateSubnav:function (depth,event){ // depth: 4=section, 3=sutta..., 2=vagga..., 1=volume..., 0=all
-
+		
+		var navShown = [0,0,0,0,0];
+		
 		document.activeElement.blur();
 		
 		var nikaya = $('#nav-set').val();
@@ -88,6 +90,7 @@ var sidebarJS = {
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
+					navShown[0] = 1;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -105,6 +108,7 @@ var sidebarJS = {
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
+					navShown[1] = 1;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -122,6 +126,7 @@ var sidebarJS = {
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
+					navShown[2] = 1;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -140,6 +145,7 @@ var sidebarJS = {
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
+					navShown[3] = 1;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -149,7 +155,7 @@ var sidebarJS = {
 			default: // remake section list
 
 				lista = this.makeTitleSelect(y,'h4n');
-
+	
 				listNode = $('#nav-section');
 				listNode.empty();
 				
@@ -158,6 +164,7 @@ var sidebarJS = {
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
+					navShown[4] = 1;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -168,40 +175,20 @@ var sidebarJS = {
 		}
 		$('.navbutton').hide();
 		
-		switch(true) {
-			case $('#nav-section').is(":visible"):
-				$('#nav-section-button').click(function(){
-					var aplace = sidebarJS.getSubNavArray();
-					loadXMLSection("","",aplace);
-				});
+		switch(1) {
+			case navShown[4]:
 				$('#nav-section-button').show();
 				break;
-			case $('#nav-sutta').is(":visible"):
-				$('#nav-sutta-button').click(function(){
-					var aplace = sidebarJS.getSubNavArray();
-					loadXMLSection("","",aplace);
-				});
+			case navShown[3]:
 				$('#nav-sutta-button').show();
 				break;
-			case $('#nav-vagga-button').is(":visible"):
-				$('#nav-vagga-button').click(function(){
-					var aplace = sidebarJS.getSubNavArray();
-					loadXMLSection("","",aplace);
-				});
+			case navShown[2]:
 				$('#nav-vagga-button').show();
 				break;
-			case $('#nav-volume-button').is(":visible"):
-				$('#nav-volume-button').click(function(){
-					var aplace = sidebarJS.getSubNavArray();
-					loadXMLSection("","",aplace);
-				});
+			case navShown[1]:
 				$('#nav-volume-button').show();
 				break;
-			case $('#nav-meta-button').is(":visible"):
-				$('#nav-meta-button').click(function(){
-					var aplace = sidebarJS.getSubNavArray();
-					loadXMLSection("","",aplace);
-				});
+			case navShown[0]:
 				$('#nav-meta-button').show();
 				break;
 		}
@@ -209,7 +196,54 @@ var sidebarJS = {
 
 
 	},
-	
+
+	changeHier:function(htmp) {
+
+		if(G_hier == htmp) return;
+		
+		var himg = ['l','m','r'];
+
+		if (htmp == 't' && this.limitt(document.getElementById('nav-set').selectedIndex)) { 
+			var MAT = G_hier == 'm'?'mul':'att';
+			alert('Ṭīkā not available for ' + G_nikLongName[document.getElementById('nav-set').value]+'.');
+			return; 
+		}
+		if (htmp == 'a' && document.getElementById('nav-set').selectedIndex > 7) {
+			alert('Aṭṭhakathā not available for ' + G_nikLongName[document.getElementById('nav-set').value]+'.');
+			return;
+		}
+		if (document.getElementById('nav-set').value == 'k' && htmp == 'a' && kudvala[document.getElementById('nav-book').value] == undefined) {
+			alert('Aṭṭhakathā not available for '+this.getBookName(document.getElementById('nav-set').value,htmp,document.getElementById('nav-book').selectedIndex)+'.');
+			return;
+		}
+
+		G_hier = htmp;
+
+
+		var book = document.getElementById('nav-book').value;
+		if (document.getElementById('nav-set').value == 'k') {
+			if (htmp == 'm') {
+				book = parseInt(book) - 1;
+			}
+			else {
+				book = kudvala[book];
+			}
+		}
+		else if (document.getElementById('nav-set').value == 'y') {
+			var book = document.getElementById('nav-book').value;
+			if (htmp == 'm') {
+				book = parseInt(book) - 1;
+			}
+			else {
+				book = abhivala[book];
+			}
+		}
+		else
+			book = parseInt(book) - 1;
+			
+		this.changeSet();
+	},	
+
 	getSubNavArray:function(){
 		return [$('#nav-set').val(),$('#nav-book option:selected').index(),$('#nav-meta option:selected').index(),$('#nav-volume option:selected').index(),$('#nav-vagga option:selected').index(),$('#nav-sutta option:selected').index(),$('#nav-section option:selected').index(),G_hier];
 	},
@@ -226,7 +260,6 @@ var sidebarJS = {
 				outlist.push(namea);
 				continue;
 			}
-			
 			namea = translit(toUni(namea));
 
 			outlist.push(namea);
@@ -234,4 +267,14 @@ var sidebarJS = {
 		return outlist;
 	},
 	unnamed:'[unnamed]',
+
+	limitt:function(nikn) {
+		if (nikn == 5 || nikn > 6) { return true; }
+		else { return false };
+	},
+
+	loadSection:function(){
+		var aplace = this.getSubNavArray();
+		loadXMLSection("","",aplace);
+	},
 }

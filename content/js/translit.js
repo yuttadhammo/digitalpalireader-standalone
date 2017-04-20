@@ -771,6 +771,7 @@ function translit(data) {
 		return data;
 	data = data.replace(/\&nbsp;/g,' ');
 	var script = DPR_prefs['translits'];
+	
 	var out = '';
 	switch (script) {
 		case 0:

@@ -614,7 +614,4 @@ function displayDictData(data) {
 	$('#difb').html('');
 	$('#difb').append(dataNode);
 	$('#cdif').scrollTop(0);
-	$('#divb').slideDown('fast', function(){
-		$( "#open-bottom" ).hide();
-	});
 }

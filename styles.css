@@ -5,28 +5,20 @@ body, p, table, div, a, font, select, input, textarea, span {
 	color: #111;
 }
 
-body, p, table, div, a, font, span {
-	font-size: 16px;
-}
-
-select, input, textarea {
-	font-size: 14px;
+body {
+	font-family: Verdana;
 }
 
 .small {
-	font-size: 12px;
 }
 
 .tiny {
-	font-size: 10px;
 }
 .large {
-	font-size: 20px;
 }
 
 
 .huge {
-	font-size: 24px;
 }
 
 .paperback {
@@ -500,12 +492,6 @@ bottom:0;
 height:4px;
 width:100%;
 background-image:url('../images/bottomtrans.png'); 
-}
-#anf {
-position:relative;
-width:100%;
-height:auto;
-z-index:3;
 }
 #anfright {
 	width:100%;

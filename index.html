@@ -62,6 +62,10 @@
 		*/
 		$( function() {
 
+			// apply preferences
+			
+			setPrefs();
+
 			/*
 
 			$( "#tabs" ).tabs();
@@ -80,19 +84,23 @@
 
 			*/
 
+			// update navigation
+
 			var navset = $("#nav-set");
 			for(var i in G_nikFullNames){
 				navset.append($("<option />").val(i).text(G_nikFullNames[i]));
 			}
 			navset.val('d');
-			sidebarJS.setBookList('d');
-			sidebarJS.changeSet();
+			chromeJS.setBookList('d');
+			chromeJS.changeSet();
 			navset.change(function() {
-				sidebarJS.changeSet();
+				chromeJS.changeSet();
 			});
 			$("#nav-book").change(function() {
-				sidebarJS.updateSubnav(0);
+				chromeJS.updateSubnav(0);
 			});
+			
+			// slider
 			
 			$( "#close-bottom" ).click(function() {
 			  $('#divb').slideUp('fast',function(){
@@ -103,6 +111,13 @@
 				$( "#open-bottom" ).hide();
 				$('#divb').slideDown('fast');
 			});
+
+			setPrefs();
+
+			$(window).resize(function() {
+				setPrefs();
+			});
+
 		} );
 		
 		
@@ -115,34 +130,37 @@
 	<div id="top-div">
 		<div id="content">
 			<div id="div1">
-				<div id="nav-set-div">
-					<select id="nav-set"></select>
-				</div>
-				<div id="nav-book-div">
-					<select id="nav-book"class="sbut" ></select>
-				</div>
-				<div id="nav-hier-div">
-					<input type="button" class="abut obut" value="M" id="hier-m" /> | <input type="button" class="abut obut" value="A" id="hier-a" /> | <input type="button" class="abut obut" value="T" id="hier-t" /></td>
-				</div>
-				<div id="nav-title-div">
-					<input id="nav-title" type="button"/>
-				</div>
-				<div class="subnav-cont">
-					<select id="nav-meta" onchange="sidebarJS.updateSubnav(1)"></select>&nbsp;<input id="nav-meta-button" class="navbutton abut obut" type="button" value="&rArr;"/>
-				</div>
-				<div class="subnav-cont">
-					<select id="nav-volume" onchange="sidebarJS.updateSubnav(2)"></select>&nbsp;<input id="nav-volume-button" class="navbutton abut obut" type="button" value="&rArr;"/>
-				</div>
-				<div class="subnav-cont">
-					<select id="nav-vagga" onchange="sidebarJS.updateSubnav(3)"></select>&nbsp;<input id="nav-vagga-button" class="navbutton abut obut" type="button" value="&rArr;"/>
-				</div>
-				<div class="subnav-cont">
-					<select id="nav-sutta" onchange="sidebarJS.updateSubnav(4)"></select>&nbsp;<input id="nav-sutta-button" class="navbutton abut obut" type="button" value="&rArr;"/>
-				</div>
-				<div class="subnav-cont">
-					<select id="nav-section"></select>&nbsp;<input id="nav-section-button" class="navbutton abut obut" type="button" value="&rArr;"/>
-				</div>
-				<div class="subnav-cont" id="tbContainer">
+				<div id="nav-rel-div">
+					<div id="nav-set-div">
+						<select id="nav-set"></select>
+					</div>
+					<div id="nav-book-div">
+						<select id="nav-book"class="sbut" ></select>
+					</div>
+					<div id="nav-hier-div">
+						<input type="button" class="hierbutton" value="M" onclick="chromeJS.changeHier('m')" id="hier-m" /><input type="button" class="hierbutton" value="A" onclick="chromeJS.changeHier('a')" id="hier-a" /><input type="button" class="hierbutton" value="T" onclick="chromeJS.changeHier('t')" id="hier-t" /></td>
+					</div>
+					<div id="nav-title-div">
+						<input id="nav-title" type="button"/>
+					</div>
+					<div class="subnav-cont">
+						<select id="nav-meta" onchange="chromeJS.updateSubnav(1)"></select>&nbsp;<input id="nav-meta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+					</div>
+					<div class="subnav-cont">
+						<select id="nav-volume" onchange="chromeJS.updateSubnav(2)"></select>&nbsp;<input id="nav-volume-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+					</div>
+					<div class="subnav-cont">
+						<select id="nav-vagga" onchange="chromeJS.updateSubnav(3)"></select>&nbsp;<input id="nav-vagga-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+					</div>
+					<div class="subnav-cont">
+						<select id="nav-sutta" onchange="chromeJS.updateSubnav(4)"></select>&nbsp;<input id="nav-sutta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+					</div>
+					<div class="subnav-cont">
+						<select id="nav-section"></select>&nbsp;<input id="nav-section-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+					</div>
+					<div class="subnav-cont" id="tbContainer">
+					</div>
+					<br class="clear"/>
 				</div>
 			</div>
 			<div id="div2">
@@ -161,34 +179,52 @@
 			</div> 
 		</div>
 		<div id="divb" onmouseover="document.body.style.cursor='auto'">
-			<div id="close-bottom">=</div>
-			<div id="anf" align="right" class="chromeback">
-				<div id="brtop"></div>
-				<div id="brmid"></div>
-				<div id="brbot"></div>
-				<div id="anft">
-					<div align="center" id="anfa"></div>
-					<div align="center" id="anfb"><table cellspacing="0" cellpadding="0" width=100%><tr><td align="left" valign="top" id="anfleft"></td><td valign=top align=center id="anfcenter"></td><td valign="top" align="right" id="anfright"></td></tr></table></div>
-					<div style="position:relative">
-						<div id="anfs"></div>
-						<div id="anfsd"></div>
-					</div>
-				</div>
-			</div>
-			<div id="bottom">
-				<div id="difout" class="difout">
-					<div id="cdif" class="cdif">
-						<div id="dif" class="dif paperback">
-							<div id="difb" class="difb">
-							</div>
+			<div id="close-bottom"><span>=</span></div>
+			<div id="prefs-button" onclick="$('#pref-box').slideToggle()"><span>*</span></div>
+			<div id="bottom-content">
+				<div id="anf" align="right" class="chromeback">
+					<div id="brtop"></div>
+					<div id="brmid"></div>
+					<div id="brbot"></div>
+					<div id="anft">
+						<div align="center" id="anfa"></div>
+						<div align="center" id="anfb"><table cellspacing="0" cellpadding="0" width=100%><tr><td align="left" valign="top" id="anfleft"></td><td valign=top align=center id="anfcenter"></td><td valign="top" align="right" id="anfright"></td></tr></table></div>
+						<div style="position:relative">
+							<div id="anfs"></div>
+							<div id="anfsd"></div>
 						</div>
 					</div>
-					<div id="difhist" class="hoverShow"></div>
+				</div>
+				<div id="bottom">
+					<div id="difout" class="difout">
+						<div id="cdif" class="cdif">
+							<div id="dif" class="dif paperback">
+								<div id="difb" class="difb">
+								</div>
+							</div>
+						</div>
+						<div id="difhist" class="hoverShow"></div>
+					</div>
+				</div>
+				<div id="alertc"><span id="alert"></span></div>
+				<div id="pref-box">
+					<table>
+						<tr>
+							<td colspan="" id="pref-header">Preferences</td>
+						</tr>
+						<tr>
+							<td>Text Size:&nbsp;</td>
+							<td><input size="2" id="text-size-input">%</td>
+						</tr>
+						<tr>
+							<td><input type="button" value="Cancel" onclick="setPrefs()"></td>&nbsp;
+							<td><input type="button" value="Save" onclick="savePrefs()"></td>
+						</tr>
+					</table>
 				</div>
 			</div>
-			<div id="alertc"><span id="alert"></span></div>
 		</div>
 	</div>
-	<div id="open-bottom">=</div>
+	<div id="open-bottom"><span>=</span></div>
 </body>
 </html>
