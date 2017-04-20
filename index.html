@@ -93,6 +93,16 @@
 			$("#nav-book").change(function() {
 				sidebarJS.updateSubnav(0);
 			});
+			
+			$( "#close-bottom" ).click(function() {
+			  $('#divb').slideUp('fast',function(){
+				  $( "#open-bottom" ).show();
+			  });
+			});
+			$( "#open-bottom" ).click(function() {
+				$( "#open-bottom" ).hide();
+				$('#divb').slideDown('fast');
+			});
 		} );
 		
 		
@@ -102,86 +112,83 @@
 </head>
 
 <body>
-	<div id="parent">
-		<div id="div1">
-			<div id="nav-set-div">
-				<select id="nav-set"></select>
+	<div id="top-div">
+		<div id="content">
+			<div id="div1">
+				<div id="nav-set-div">
+					<select id="nav-set"></select>
+				</div>
+				<div id="nav-book-div">
+					<select id="nav-book"class="sbut" ></select>
+				</div>
+				<div id="nav-hier-div">
+					<input type="button" class="abut obut" value="M" id="hier-m" /> | <input type="button" class="abut obut" value="A" id="hier-a" /> | <input type="button" class="abut obut" value="T" id="hier-t" /></td>
+				</div>
+				<div id="nav-title-div">
+					<input id="nav-title" type="button"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-meta"></select>&nbsp;<input id="nav-meta-button" class="navbutton abut obut" type="button" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-volume"></select>&nbsp;<input id="nav-volume-button" class="navbutton abut obut" type="button" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-vagga"></select>&nbsp;<input id="nav-vagga-button" class="navbutton abut obut" type="button" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-sutta"></select>&nbsp;<input id="nav-sutta-button" class="navbutton abut obut" type="button" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-section"></select>&nbsp;<input id="nav-section-button" class="navbutton abut obut" type="button" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont" id="tbContainer">
+				</div>
 			</div>
-			<div id="nav-book-div">
-				<select id="nav-book"></select>
-			</div>
-			<div id="nav-hier-div">
-				<input type="button" value="M" id="hier-m" /> | <input type="button" value="A" id="hier-a" /> | <input type="button" value="T" id="hier-t" /></td>
-			</div>
-			<div id="nav-title-div">
-				<input id="nav-title" type="button"/>
-			</div>
-			<div class="subnav-cont">
-				<select id="nav-meta"></select>&nbsp;<input id="nav-meta-button" type="button" value="&rArr;"/>
-			</div>
-			<div class="subnav-cont">
-				<select id="nav-volume"></select>&nbsp;<input id="nav-volume-button" type="button" value="&rArr;"/>
-			</div>
-			<div class="subnav-cont">
-				<select id="nav-vagga"></select>&nbsp;<input id="nav-vagga-button" type="button" value="&rArr;"/>
-			</div>
-			<div class="subnav-cont">
-				<select id="nav-sutta"></select>&nbsp;<input id="nav-sutta-button" type="button" value="&rArr;"/>
-			</div>
-			<div class="subnav-cont">
-				<select id="nav-section"></select>&nbsp;<input id="nav-section-button" type="button" value="&rArr;"/>
-			</div>
-		</div>
-		<div id="div2">
-			<div id="content">
+			<div id="div2">
 				<div id="matrelc"></div>
 				<div id="diva" onmouseover="document.body.style.cursor='auto'">
 					<div id="maf">
 						<div align="left" id="mafa" class="paperback"></div>
 						<div align="justify" id="mafb" class="paperback">
 							<div id="mafbc">
-								<div align="center"><br><br><br><br><br><h1>loading...</h1></div>
-								<div id="mafe" align=center>
-								</div>
-								<div id="mafd" align=center>
-								</div>
-								<div id="mafdebug"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="divb" onmouseover="document.body.style.cursor='auto'">
-					<div id="anf" align="right" class="chromeback">
-						<div id="brtop"></div>
-						<div id="brmid"></div>
-						<div id="brbot"></div>
-						<div id="anft">
-							<div align="center" id="anfa"></div>
-							<div align="center" id="anfb"><table cellspacing="0" cellpadding="0" width=100%><tr><td align="left" valign="top" id="anfleft"></td><td valign=top align=center id="anfcenter"></td><td valign=top align=right id="anfright"></td></tr></table></div>
-							<div style="position:relative">
-								<div id="anfs"></div>
-								<div id="anfsd"></div>
-							</div>
-						</div>
-					</div>
-					<div id="bottom">
-						<div id="difout" class="difout">
-							<div id="cdif" class="cdif">
-								<div id="dif" class="dif paperback">
-									<div id="difb" class="difb">
-									</div>
-								</div>
-							</div>
-							<div id="difhist" class="hoverShow"></div>
-						</div>
-					</div>
-					<div id="alertc"><span id="alert"></span></div>
-				</div>
-				<div id="tbContainer" style="display:none" class="chromeback" onmouseover="$('#tbContainer2').show(); $('#tbOpener').hide();" onmouseout="$('#tbContainer2').hide();$('#tbOpener').show();"></div>
 
+							</div>
+						</div>
+					</div>
+				</div>
 				<div id="alertc"><span id="alert"></span></div>
+			</div> 
+		</div>
+		<div id="divb" onmouseover="document.body.style.cursor='auto'">
+			<div id="close-bottom">=</div>
+			<div id="anf" align="right" class="chromeback">
+				<div id="brtop"></div>
+				<div id="brmid"></div>
+				<div id="brbot"></div>
+				<div id="anft">
+					<div align="center" id="anfa"></div>
+					<div align="center" id="anfb"><table cellspacing="0" cellpadding="0" width=100%><tr><td align="left" valign="top" id="anfleft"></td><td valign=top align=center id="anfcenter"></td><td valign="top" align="right" id="anfright"></td></tr></table></div>
+					<div style="position:relative">
+						<div id="anfs"></div>
+						<div id="anfsd"></div>
+					</div>
+				</div>
 			</div>
-		</div> 
+			<div id="bottom">
+				<div id="difout" class="difout">
+					<div id="cdif" class="cdif">
+						<div id="dif" class="dif paperback">
+							<div id="difb" class="difb">
+							</div>
+						</div>
+					</div>
+					<div id="difhist" class="hoverShow"></div>
+				</div>
+			</div>
+			<div id="alertc"><span id="alert"></span></div>
+		</div>
 	</div>
+	<div id="open-bottom">=</div>
 </body>
 </html>

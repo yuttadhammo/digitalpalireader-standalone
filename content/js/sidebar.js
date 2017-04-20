@@ -166,12 +166,52 @@ var sidebarJS = {
 				listNode.val(0);
 			break;
 		}
+		$('.navbutton').hide();
+		
+		switch(true) {
+			case $('#nav-section').is(":visible"):
+				$('#nav-section-button').click(function(){
+					var aplace = sidebarJS.getSubNavArray();
+					loadXMLSection("","",aplace);
+				});
+				$('#nav-section-button').show();
+				break;
+			case $('#nav-sutta').is(":visible"):
+				$('#nav-sutta-button').click(function(){
+					var aplace = sidebarJS.getSubNavArray();
+					loadXMLSection("","",aplace);
+				});
+				$('#nav-sutta-button').show();
+				break;
+			case $('#nav-vagga-button').is(":visible"):
+				$('#nav-vagga-button').click(function(){
+					var aplace = sidebarJS.getSubNavArray();
+					loadXMLSection("","",aplace);
+				});
+				$('#nav-vagga-button').show();
+				break;
+			case $('#nav-volume-button').is(":visible"):
+				$('#nav-volume-button').click(function(){
+					var aplace = sidebarJS.getSubNavArray();
+					loadXMLSection("","",aplace);
+				});
+				$('#nav-volume-button').show();
+				break;
+			case $('#nav-meta-button').is(":visible"):
+				$('#nav-meta-button').click(function(){
+					var aplace = sidebarJS.getSubNavArray();
+					loadXMLSection("","",aplace);
+				});
+				$('#nav-meta-button').show();
+				break;
+		}
+		
 
-		$('#nav-section-button').click(function(){
-			var aplace = [nikaya,$('#nav-book').index(),$('#nav-meta').index(),$('#nav-volume').index(),$('#nav-vagga').index(),$('#nav-sutta').index(),$('#nav-section').index(),G_hier];
-			loadXMLSection("","",aplace);
-		});
 
+	},
+	
+	getSubNavArray:function(){
+		return [$('#nav-set').val(),$('#nav-book option:selected').index(),$('#nav-meta option:selected').index(),$('#nav-volume option:selected').index(),$('#nav-vagga option:selected').index(),$('#nav-sutta option:selected').index(),$('#nav-section option:selected').index(),G_hier];
 	},
 	
 	makeTitleSelect:function(xml,tag) { // output menupopup tag with titles in menuitems

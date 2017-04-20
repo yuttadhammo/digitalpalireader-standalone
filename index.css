@@ -1,7 +1,12 @@
-body, .div {
+body {
 	margin:0;
 	padding:0;
+	overflow:hidden;
 }
+#nav-hier-div {
+	display:none;
+}
+
 #nav-hier {
 	text-align:center;
 }
@@ -14,52 +19,87 @@ body, .div {
 	background:#DDD;
 	cursor:pointer;
 }
-#nav-table select {
-	width:100%;
-}
-#nav-table option {
-	font-size:10pt;
-	height:20px;
-	font-family:Arial
-}
 #nav-title {
 	width:100%;
 }
-#nav-sub select {
-	width:80%;
+
+#tbContainer {
+	display:none;
 }
-#nav-sub option {
-	font-family:Arial;
-	font-size:10pt;
-	height:22px;
-}
-#parent{
-	position:absolute;
-	height:100%;
+
+#top-div{
+	position:relative;
+	top:0;
+	bottom:0px;
+	left:0px;
+	right:0px;
 	margin:0;
 	padding:0;
-	width:100%;
+	overflow:hidden;
 }
 
 #div1 {
-	float:left;
 	width:100%;
 	
 }
 #div2 {
-	float:left;
 	width:100%;
 }
 
 #divb {
 	position:absolute;
-	width:100%;
 	bottom:0px;
-	max-height:300px;
-	overflow:scroll;
+	left:0px;
+	right:0px;
+	overflow:hidden;
 	background:white;
 	border:1px black solid;
+	display:none;
 
+}
+
+#close-bottom, #open-bottom{
+	background:#EEE;
+	cursor:pointer;
+	height:20px;
+	text-align:center;
+	border-bottom:1px solid black;
+}
+#open-bottom {
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	border-bottom:1px solid black;
+	border-top:1px solid black;
+}
+
+#bottom {  
+	position:relative;
+	height:300px;
+	overflow:auto;
+}
+#dictc {
+	position:relative;
+	height:100%; 
+	overflow:auto;
+	padding:0 10px 0 10px;
+}
+#odif {
+	position:relative;
+	width:100%; 
+	overflow:auto;
+}
+#difout {
+
+}
+#cdif {
+
+}
+#dif {
+
+padding:0 20px;
+ 
 }
 
 
@@ -69,7 +109,13 @@ body, .div {
 
 
 #content{
-
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	margin:0;
+	padding:0;	
+	overflow:auto;
 }
 
 

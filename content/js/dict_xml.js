@@ -97,11 +97,9 @@ function paliXML(filein,which,add)
 	}
 
 
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = '<p>'+data.replace(/\[([^\]]*)\]/g, "[<em style=\"color:grey\">$1</em>]")+'<hr/>';
-	document.getElementById('difb').setAttribute('align','left');
-	document.getElementById('difb').appendChild(dataNode);
-	document.getElementById('cdif').scrollTop=0;
+	var outdata = '<p>'+data.replace(/\[([^\]]*)\]/g, "[<em style=\"color:grey\">$1</em>]")+'<hr/>';
+	
+	displayDictData(outdata);
 
 	var tout = '';
 	if (G_pedhist.length > 1) { // show select
@@ -148,7 +146,7 @@ function paliXML(filein,which,add)
 
 	if(document.getElementById('bottom')) {
 		document.getElementById('cdif').scrollTop=0;
-		document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
+		//document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
 	}
 	else document.getElementById('dictc').scrollTop=0;
 
@@ -240,11 +238,8 @@ function DPPNXML(filein,which,add)
 	
 	// output
 
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = '<p>'+data+'<hr/>';
-	document.getElementById('difb').setAttribute('align','left');
-	document.getElementById('difb').appendChild(dataNode);
-
+    displayDictData(data);
+	
 	// get number
 	var tname, lname, nname;
 	
@@ -290,7 +285,7 @@ function DPPNXML(filein,which,add)
 	$('#difhist').html('<table><tr><td>' + tout + '</td></tr></table>');
 	if(document.getElementById('bottom')) {
 		document.getElementById('cdif').scrollTop=0;
-		document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
+		//document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
 	}
 	else document.getElementById('dictc').scrollTop=0;
 	
@@ -352,16 +347,13 @@ function sktRXML(no,add)
 	
 	// output
 
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = data+'<hr/>';
-	document.getElementById('difb').setAttribute('align','left');
-	document.getElementById('difb').appendChild(dataNode);
+    displayDictData(data);
 
 	// scroll
 
 	if(document.getElementById('bottom')) {
 		document.getElementById('cdif').scrollTop=0;
-		document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
+		//document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
 	}
 	else document.getElementById('dictc').scrollTop=0;
 	
@@ -408,11 +400,7 @@ function sktXML(entry,idx,which,add)
 	
 	data = data.replace(/<(\/*)d/g,"<$1td").replace(/<(\/*)u/g,"<$1table").replace(/<(\/*)r/g,"<$1tr").replace(/<(\/*)f/g,"<$1font").replace(/ c=["']g/g,' style="color:green').replace(/ c=["']b/g,' style="color:blue').replace(/ c=["']r/g,' style="color:red').replace(/ s=["']-1/g,'  style="font-size:75%').replace(/" style="/g,';');
 
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = '<p>'+data+'<hr/>';
-	document.getElementById('difb').setAttribute('align','left');
-	document.getElementById('difb').appendChild(dataNode);
-	document.getElementById('cdif').scrollTop=0;
+    displayDictData(data);
 
 	// permalink
 	
@@ -500,12 +488,7 @@ function getAtthXML(num,type,niklist) { // get atthakatha or tika word
         finout += '<p><span class="abut obut tiny" onclick="openPlace([\''+nikaya+'\','+bookno+','+pca[2]+','+pca[3]+','+pca[4]+','+pca[5]+','+pca[6]+',\''+type+'\'],'+(parseInt(pca[7])+1)+',[\''+toUni(word)+'\'],eventSend(event))">'+placen+'</span> '+preparepali(z,1)[0]+'</p>';
     }
 
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = finout;
-	document.getElementById('difb').setAttribute('align','left');
-	$('#difb').html('');
-	document.getElementById('difb').appendChild(dataNode);
-	document.getElementById('dictc').scrollTop=0;
+    displayDictData(finout);
 
     setCurrentTitle(toUni(word)+' in the '+G_hTitles[G_hNumbers[type]]);
 }
@@ -609,12 +592,7 @@ function getTitleXML(num,mul,att,tik,niklist) { // get titles for title search
 		
         finout += '<p>'+placen+' <span class="abut obut" onclick="openPlace([\''+nikaya+'\',\''+bookno+'\',\''+pca[2]+'\',\''+pca[3]+'\',\''+pca[4]+'\',\''+pca[5]+'\',\''+pca[6]+'\',\''+hiert+'\'],null,null,eventSend(event));">go</span></p>';
     }
-	var dataNode = document.createElement('div');
-	dataNode.innerHTML = finout;
-	document.getElementById('difb').setAttribute('align','left');
-	$('#difb').html('');
-	document.getElementById('difb').appendChild(dataNode);
-	document.getElementById('dictc').scrollTop=0;
+    displayDictData(finout);
 }
 
 
@@ -631,3 +609,12 @@ function getDppnData(link){
 	return data;
 }
 
+function displayDictData(data) {
+	var dataNode = $('<div></div>').html(data); 
+	$('#difb').html('');
+	$('#difb').append(dataNode);
+	$('#cdif').scrollTop(0);
+	$('#divb').slideDown('fast', function(){
+		$( "#open-bottom" ).hide();
+	});
+}

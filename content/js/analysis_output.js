@@ -175,7 +175,6 @@ function outputDef(which,first,frombox)
 		//if(moveat == 2) { moveFrame(1); }
 	}
 	else clearDivs('dif');
-    document.getElementById('bottom').style.top = (document.getElementById('anf').offsetHeight - 4) + 'px';
 }
 
 var G_thisConcise = [];
