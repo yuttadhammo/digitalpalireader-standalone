@@ -181,6 +181,10 @@ function outputDef(which,first,frombox)
 	if(!$('#bottom').is(':visible')) {
 		$( "#open-bottom" ).click();
 	}
+	if($('#sidebar').is(':visible')) {
+		$( "#close-left" ).click();
+	}
+	
 }
 
 var G_thisConcise = [];

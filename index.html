@@ -100,7 +100,7 @@
 				chromeJS.updateSubnav(0);
 			});
 			
-			// slider
+			// sliders
 			
 			$( "#close-bottom" ).click(function() {
 			  $('#divb').slideUp('fast',function(){
@@ -112,11 +112,23 @@
 				$('#divb').slideDown('fast');
 			});
 
+			$( "#close-left" ).click(function() {
+				$('#sidebar').hide("slide", { direction: "left" }, "fast", function() {
+				  $( "#open-left" ).show();
+			  });
+			});
+			$( "#open-left" ).click(function() {
+				$( "#open-left" ).hide();
+				$('#sidebar').show("slide", { direction: "left" }, "fast");
+			});
+
 			setPrefs();
 
 			$(window).resize(function() {
 				setPrefs();
 			});
+			
+			$("#sidebar").sidebar().trigger("sidebar:open");			
 
 		} );
 		
@@ -127,42 +139,45 @@
 </head>
 
 <body>
+	<div id="sidebar">
+		<div id="div1">
+			<div id="nav-rel-div">
+				<div id="nav-set-div">
+					<select id="nav-set"></select>
+				</div>
+				<div id="nav-book-div">
+					<select id="nav-book"class="sbut" ></select>
+				</div>
+				<div id="nav-hier-div">
+					<input type="button" class="hierbutton" value="M" onclick="chromeJS.changeHier('m')" id="hier-m" /><input type="button" class="hierbutton" value="A" onclick="chromeJS.changeHier('a')" id="hier-a" /><input type="button" class="hierbutton" value="T" onclick="chromeJS.changeHier('t')" id="hier-t" /></td>
+				</div>
+				<div id="nav-title-div">
+					<input id="nav-title" type="button"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-meta" class="navselect" onchange="chromeJS.updateSubnav(1)"></select><br class="clear"/><input id="nav-meta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-volume" class="navselect" onchange="chromeJS.updateSubnav(2)"></select><br class="clear"/><input id="nav-volume-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-vagga" class="navselect" onchange="chromeJS.updateSubnav(3)"></select><br class="clear"/><input id="nav-vagga-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-sutta" class="navselect" onchange="chromeJS.updateSubnav(4)"></select><br class="clear"/><input id="nav-sutta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont">
+					<select id="nav-section" class="navselect"></select><br class="clear"/><input id="nav-section-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
+				</div>
+				<div class="subnav-cont" id="tbContainer">
+				</div>
+				<br class="clear"/>
+			</div>
+		</div>
+		<div id="close-left"><div class="left-open-close">||</div></div>
+	</div>
 	<div id="top-div">
 		<div id="content">
-			<div id="div1">
-				<div id="nav-rel-div">
-					<div id="nav-set-div">
-						<select id="nav-set"></select>
-					</div>
-					<div id="nav-book-div">
-						<select id="nav-book"class="sbut" ></select>
-					</div>
-					<div id="nav-hier-div">
-						<input type="button" class="hierbutton" value="M" onclick="chromeJS.changeHier('m')" id="hier-m" /><input type="button" class="hierbutton" value="A" onclick="chromeJS.changeHier('a')" id="hier-a" /><input type="button" class="hierbutton" value="T" onclick="chromeJS.changeHier('t')" id="hier-t" /></td>
-					</div>
-					<div id="nav-title-div">
-						<input id="nav-title" type="button"/>
-					</div>
-					<div class="subnav-cont">
-						<select id="nav-meta" onchange="chromeJS.updateSubnav(1)"></select>&nbsp;<input id="nav-meta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
-					</div>
-					<div class="subnav-cont">
-						<select id="nav-volume" onchange="chromeJS.updateSubnav(2)"></select>&nbsp;<input id="nav-volume-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
-					</div>
-					<div class="subnav-cont">
-						<select id="nav-vagga" onchange="chromeJS.updateSubnav(3)"></select>&nbsp;<input id="nav-vagga-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
-					</div>
-					<div class="subnav-cont">
-						<select id="nav-sutta" onchange="chromeJS.updateSubnav(4)"></select>&nbsp;<input id="nav-sutta-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
-					</div>
-					<div class="subnav-cont">
-						<select id="nav-section"></select>&nbsp;<input id="nav-section-button" class="navbutton" type="button" onclick="chromeJS.loadSection()" value="&rArr;"/>
-					</div>
-					<div class="subnav-cont" id="tbContainer">
-					</div>
-					<br class="clear"/>
-				</div>
-			</div>
 			<div id="div2">
 				<div id="matrelc"></div>
 				<div id="diva" onmouseover="document.body.style.cursor='auto'">
@@ -179,7 +194,7 @@
 			</div> 
 		</div>
 		<div id="divb" onmouseover="document.body.style.cursor='auto'">
-			<div id="close-bottom"><span>=</span></div>
+			<div id="close-bottom"><div class="bottom-open-close">=</div></div>
 			<div id="prefs-button" onclick="$('#pref-box').slideToggle()"><span>*</span></div>
 			<div id="bottom-content">
 				<div id="anf" align="right" class="chromeback">
@@ -225,6 +240,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="open-bottom"><span>=</span></div>
+	<div id="open-left"><div class="left-open-close">||</div></div>
+	<div id="open-bottom"><div class="bottom-open-close">=</div></div>
 </body>
 </html>

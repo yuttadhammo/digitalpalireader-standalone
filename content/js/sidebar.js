@@ -276,5 +276,6 @@ var chromeJS = {
 	loadSection:function(){
 		var aplace = this.getSubNavArray();
 		loadXMLSection("","",aplace);
+		$("#close-left").click();
 	},
 }

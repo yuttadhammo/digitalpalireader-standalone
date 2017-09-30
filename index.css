@@ -38,7 +38,7 @@ body {
 #top-div{
 	top:0px;
 	bottom:0px;
-	left:0px;
+	left:28px;
 	right:0px;
 	margin:0;
 	padding:0;
@@ -59,7 +59,7 @@ body {
 #divb {
 	position:absolute;
 	bottom:0px;
-	left:0px;
+	left:28px;
 	right:0px;
 	overflow:hidden;
 	background:white;
@@ -68,21 +68,7 @@ body {
 
 }
 
-#close-bottom, #open-bottom{
-	background:#EEE;
-	cursor:pointer;
-	height:28px;
-	text-align:center;
-	border-bottom:1px solid black;
-}
-#open-bottom {
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	border-bottom:1px solid black;
-	border-top:1px solid black;
-}
+
 #prefs-button {
 	position:absolute;
 	top:28px;
@@ -165,11 +151,65 @@ padding:0 20px;
 	position:absolute;
 	bottom:0px;
 	top:0px;
-	left:0px;
 	right:0px;
 	margin:0;
 	padding:0;	
 	overflow:auto;
 }
 
+#sidebar {
+	background:#EEE;
+	width:300px;
+	display:none;
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	z-index:1000;
+}
 
+#close-bottom, #open-bottom {
+	background:#EEE;
+	cursor:pointer;
+	text-align:center;
+	border-bottom:1px solid black;
+}
+#open-bottom {
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	border-bottom:1px solid black;
+	border-top:1px solid black;
+}
+
+#close-left, #open-left {
+	background:#EEE;
+	cursor:pointer;
+	text-align:center;
+	border-right:1px solid black;
+	border-left:1px solid black;
+}
+.left-open-close {
+	position:absolute;
+	top:50%;
+	margin-top:-1em;
+}
+.bottom-open-close {
+	padding-top:4px;
+	height:28px;
+}
+
+#open-left {
+	position:absolute;
+	bottom:0;
+	left:0;
+	top:0;
+	z-index:1000;
+}
+#close-left {
+	position:absolute;
+	bottom:0;
+	right:0;
+	top:0;
+}

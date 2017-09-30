@@ -90,9 +90,15 @@ function setPrefs() {
 	}
 
 	// perform changes
-		
+	
+	var baseSize = 28;
 	var textmag = DPR_prefs['textmag'];
-	$('head').append('<style id="addedCSS" type="text/css">p,span,td,select,option,input { font-size: '+Math.round(20*textmag/100)+'px; } #close-bottom,#open-bottom { height: '+Math.round(28*textmag/100)+'px; }  #prefs-button { top: '+Math.round(28*textmag/100)+'px; height: '+Math.round(24*textmag/100)+'px; width: '+Math.round(28*textmag/100)+'px; }</style>');
+	
+	var magSize = Math.round(baseSize*textmag/100);
+	var magSize2 = Math.round(baseSize*textmag/200);
+	var magSize3 = Math.round(baseSize*textmag/300);
+		
+	$('head').append('<style id="addedCSS" type="text/css">p,span,td,select,option,input,.bottom-open-close,.left-open-close { font-size: '+magSize3+'pt; }  #prefs-button { top: '+magSize2+'px; height: '+magSize2+'px; width:'+magSize2+'px; } #topdiv,#divb,#content,#close-bottom, #open-bottom{left:'+magSize+'px} #close-bottom,#open-bottom { height: '+magSize+' !important; } .left-open-close, #close-left,#open-left { width: '+magSize+'px !important; } .bottom-open-close { height: '+ Math.round(magSize/1.8)+'px !important;  } #nav-title,.navbutton,.navselect{width:'+ Math.round(2.1*textmag)+'px} #sidebar{width:'+ Math.round(2.4*textmag)+'px} #anft{margin-right:'+magSize2+'px}</style>'); 
 	
 	$('#div2').css('margin-top',$('#nav-rel-div').height()+'px');
 	
