@@ -45,7 +45,7 @@ var chromeJS = {
 
 	updateSubnav:function (depth,event){ // depth: 4=section, 3=sutta..., 2=vagga..., 1=volume..., 0=all
 		
-		var navShown = [0,0,0,0,0];
+		var navShown = [$('#nav-meta-button').is(":visible"),$('#nav-volume-button').is(":visible"),$('#nav-vagga-button').is(":visible"),$('#nav-sutta-button').is(":visible"),$('#nav-section-button').is(":visible")];
 		
 		document.activeElement.blur();
 		
@@ -88,9 +88,10 @@ var chromeJS = {
 				if (lista.length == 1 && lista[0] == this.unnamed ) {
 					listNode.parent().hide();
 					listNode.append($("<option />").val(0).text(this.unnamed));
+					navShown[0] = false;
 				}
 				else {
-					navShown[0] = 1;
+					navShown[0] = true;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -104,11 +105,12 @@ var chromeJS = {
 				listNode.empty();
 				
 				if (lista.length == 1 && lista[0] == this.unnamed ) {
+					navShown[1] = false;
 					listNode.parent().hide();
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
-					navShown[1] = 1;
+					navShown[1] = true;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -122,11 +124,12 @@ var chromeJS = {
 				listNode.empty();
 				
 				if (lista.length == 1 && lista[0] == this.unnamed ) {
+					navShown[2] = false;
 					listNode.parent().hide();
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
-					navShown[2] = 1;
+					navShown[2] = true;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -134,18 +137,19 @@ var chromeJS = {
 				}
 				listNode.val(0);
 
-			case  (depth < 4): // remake sutta list on depth = 0, 2, or 3
+			case  (depth < 4): // remake sutta list on depth = 0, 1, 2, or 3
 				lista = this.makeTitleSelect(x,'h3n');
 
 				listNode = $('#nav-sutta');
 				listNode.empty();
 				
 				if (lista.length == 1 && lista[0] == this.unnamed ) {
+					navShown[3] = false;
 					listNode.parent().hide();
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
-					navShown[3] = 1;
+					navShown[3] = true;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -160,11 +164,12 @@ var chromeJS = {
 				listNode.empty();
 				
 				if (lista.length == 1 && lista[0] == this.unnamed ) {
+					navShown[4] = false;
 					listNode.parent().hide();
 					listNode.append($("<option />").val(0).text(this.unnamed));
 				}
 				else {
-					navShown[4] = 1;
+					navShown[4] = true;
 					for(idx in lista){
 						listNode.append($("<option />").val(idx).text(lista[idx]));
 					}	
@@ -174,8 +179,7 @@ var chromeJS = {
 			break;
 		}
 		$('.navbutton').hide();
-		
-		switch(1) {
+		switch(true) {
 			case navShown[4]:
 				$('#nav-section-button').show();
 				break;
